@@ -1,0 +1,382 @@
+@import "tailwindcss" source(none);
+@source "../index.html";
+@source "./**/*.{ts,tsx}";
+
+@layer base {
+  :root {
+    --brand-orange: #ff5a1f;
+    --brand-orange-hover: #e04b12;
+    --brand-orange-subtle: #fff7ed;
+    --brand-orange-border: #fed7aa;
+    --orange: #ff5a1f;
+
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-muted: #f1f5f9;
+    --border-subtle: #e2e8f0;
+    --border-hover: #cbd5e1;
+
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+  }
+
+  .dark {
+    --brand-orange: #ff5a1f;
+    --brand-orange-hover: #ff733b;
+    --brand-orange-subtle: rgba(255, 90, 31, 0.14);
+    --brand-orange-border: rgba(255, 90, 31, 0.35);
+    --orange: #ff5a1f;
+
+    --bg-page: #0c0d10;
+    --bg-surface: #14161b;
+    --bg-surface-muted: #1c1e24;
+    --border-subtle: #272a33;
+    --border-hover: #3b3f4d;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+  }
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Typography Defaults */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+/* Subtle Technical Dot Grid Pattern */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+}
+
+/* Modern Glass Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.dark .glass-panel {
+  background: rgba(18, 20, 25, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Clean Modern Surface Card */
+.card-modern {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+}
+
+.card-modern:hover {
+  border-color: rgba(255, 90, 31, 0.38);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.08), 0 0 24px -4px rgba(255, 90, 31, 0.08);
+}
+
+.dark .card-modern:hover {
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 0 28px -6px rgba(255, 90, 31, 0.16);
+}
+
+/* Clean Professional Surface Card */
+.card-clean {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-clean:hover {
+  border-color: var(--border-hover);
+}
+
+/* Tag / Chip Component */
+.chip-clean {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+  background-color: var(--bg-surface-muted);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 90, 31, 0.55);
+}
+
+/* Smooth Scrolling & Navbar Offset */
+html {
+  scroll-behavior: smooth;
+}
+
+#hero,
+#bento-prehled,
+#sluzby,
+#dykeno-showcase,
+#katalog,
+#odvetvi,
+#partneri,
+#konfigurator,
+#kariera,
+#casova-osa,
+#about,
+#faq,
+#kontakt,
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+/* ==========================================================================
+   Layered Section Transitions (Inspired by Stanislav Škudrna)
+   ========================================================================== */
+
+/* Hero Layer depth transition (recedes subtly as foreground sheet slides over) */
+.hero-pinned-content {
+  transform: scale(calc(1 - var(--hero-scroll, 0) * 0.05));
+  opacity: calc(1 - var(--hero-scroll, 0) * 0.45);
+  transform-origin: center top;
+  will-change: transform, opacity;
+  transition: transform 0.06s ease-out, opacity 0.06s ease-out;
+}
+
+@supports (animation-timeline: scroll()) {
+  @keyframes hero-depth-recede {
+    to {
+      transform: scale(0.95);
+      opacity: 0.55;
+    }
+  }
+
+  .hero-pinned-content {
+    animation: hero-depth-recede linear both;
+    animation-timeline: scroll();
+    animation-range: 0vh 100vh;
+  }
+}
+
+/* Physical Layer Sheet that slides upward over the Hero */
+.layered-sheet {
+  position: relative;
+  z-index: 20;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 -25px 60px -15px rgba(0, 0, 0, 0.16);
+  background-color: var(--bg-page);
+}
+
+@media (min-width: 640px) {
+  .layered-sheet {
+    border-top-left-radius: 2.75rem;
+    border-top-right-radius: 2.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layered-sheet {
+    border-top-left-radius: 3.5rem;
+    border-top-right-radius: 3.5rem;
+  }
+}
+
+.dark .layered-sheet {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -30px 70px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* Layered Card Sections for subsequent stacking surfaces (e.g. Timeline, Contact) */
+.layered-card-section {
+  position: relative;
+  border-top-left-radius: 1.75rem;
+  border-top-right-radius: 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+  box-shadow: 0 -20px 48px -12px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 640px) {
+  .layered-card-section {
+    border-top-left-radius: 2.5rem;
+    border-top-right-radius: 2.5rem;
+  }
+}
+
+.dark .layered-card-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -24px 55px -15px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   Scroll-Driven Element Reveal Animations
+   ========================================================================== */
+
+[data-scroll-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-scroll-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered transition delays */
+[data-scroll-reveal][data-scroll-delay="50"] {
+  transition-delay: 50ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="100"] {
+  transition-delay: 100ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="150"] {
+  transition-delay: 150ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="200"] {
+  transition-delay: 200ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="250"] {
+  transition-delay: 250ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="300"] {
+  transition-delay: 300ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="350"] {
+  transition-delay: 350ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="400"] {
+  transition-delay: 400ms;
+}
+
+[data-scroll-reveal][data-scroll-delay="500"] {
+  transition-delay: 500ms;
+}
+
+/* Accessibility: Strict Respect for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-pinned-content {
+    transform: none !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
